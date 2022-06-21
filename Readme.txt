@@ -1,1 +1,1 @@
-dsvdsvdsv
+Прохождение курсов по JavaScript
