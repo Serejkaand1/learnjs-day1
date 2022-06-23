@@ -28,8 +28,8 @@ let userName = "Сергей";
 
 
 
-// Переменная birthday можем писать в верхнем регистре, потому что дата рождения не изменна
-// А переменная age уже вычисляется и не такая постоянная как дата рождения 
+Переменная birthday можем писать в верхнем регистре, потому что дата рождения не изменна
+А переменная age уже вычисляется и не такая постоянная как дата рождения 
 
 
 
@@ -38,7 +38,7 @@ let userName = "Сергей";
 
 
 
-// //2.5
+//2.5
 
 
 name = "Ilya";
@@ -59,6 +59,14 @@ alert( `hello ${name}` ); // hello Ilya
 let user = prompt("Как твое имя?", "")
 
 alert(`Привет, ${user}`)
+
+
+
+
+
+
+
+
 
 
 
@@ -102,9 +110,15 @@ b = prompt("Второе число?", 2);
 
 alert(a + b); // 12
 
-// Исправленный вариант
+Исправленный вариант
 
 alert(+a + +b);
+
+
+
+
+
+
 
 
 
@@ -124,6 +138,12 @@ undefined == null //true
 undefined === null //false
 null == "\n0\n" //false
 null === +"\n0\n"  //false
+
+
+
+
+
+
 
 
 
@@ -166,7 +186,7 @@ else{
 
 
 
-// result = (a + b < 4) ? 'Мало' : 'Много';
+result = (a + b < 4) ? 'Мало' : 'Много';
 
 
 
@@ -182,7 +202,20 @@ let message =
 
 
 
-// //2.11
+
+
+
+
+
+
+
+
+
+
+
+
+
+ //2.11
 
 
 let firstName = prompt ("Кто там?", '');
@@ -192,18 +225,34 @@ if (firstName == 'Админ') {
   let pass = prompt('Пароль?', '');
 
   if (pass == 'Я главный') {
-    alert( 'Здравствуйте!' );
+     alert( 'Здравствуйте!' );
   } else if (pass == '' || pass == null) {
-    alert( 'Отменено' );
+     alert( 'Отменено' );
   } else {
-    alert( 'Неверный пароль' );
+     alert( 'Неверный пароль' );
   }
 
 } else if (firstName == '' || firstName == null) {
-  alert( 'Отменено' );
+     alert( 'Отменено' );
 } else {
-  alert( "Я вас не знаю" );
+     alert( "Я вас не знаю" );
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -232,8 +281,164 @@ for (let i = 2; i <= 10; i++) {
 let numb2;
 
 do {
-  num2 = prompt("Введите число больше 100", 0);
-} while (num2 <= 100 && num2);
+  numb2 = prompt("Введите число больше 100", 0);
+} while (numb2 <= 100 && numb2);
+
+let n = 10;
+
+label:
+for (let i = 2; i <= n; i++) {
+    
+    for (let j = 2; j < i; j++) {
+    if (i % j == 0) continue label;      
+      }
+
+      alert( i );
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 2.14
+
+
+
+let browser;
+
+
+if (browser = "Edge"){
+    alert("You've got the Edge!");
+}
+else if(browser == "Edge" || browser == "Firefox" || browser == "Safari" || browser == "Opera"){
+    alert("Okay we support these browsers too");
+}
+else{
+    alert( "We hope that this page looks ok!" );
+}
+
+
+
+const number = +prompt('Введите число между 0 и 3', '');
+
+switch (number) {
+case 0:
+    alert('Вы ввели число 0');
+        break;
+
+case 1:
+    alert('Вы ввели число 1');
+        break;
+
+case 2:
+case 3:
+    alert('Вы ввели число 2, а может и 3');
+        break;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 2.15
+
+
+
+function checkAge(age) {
+    return (age > 18) ? true : confirm('Родители разрешили?');
+  }
+
+
+
+  function checkAge(age) {
+    return (age > 18) || confirm('Родители разрешили?');
+  }
+
+
+
+function min (a,b){
+    if (a>=b){
+        return a;
+    }else{
+        return b;
+    }
+        
+}
+
+
+
+function pow (a,b){
+    let result = a**b;
+        return result;
+}
+
+
+let x = prompt("Назовите x?", '');
+let n = prompt("Назовитe n?", '');
+
+if (n < 1) {
+    alert(`Степень ${n} не поддерживается, используйте натуральное число`);
+  } else {
+    alert( pow(x, n) );
+  }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 2.17
+
+
+ask(
+    "Вы согласны?",
+        () => alert("Вы согласились."),
+        () => alert("Вы отменили выполнение.")
+  );
+
 
 
 
