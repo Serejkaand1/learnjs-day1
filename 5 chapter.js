@@ -119,17 +119,17 @@ styles.unshift("Рэп", "Регги");
 
 function sumInput() {
 
- let numbers = [];
+let numbers = [];
   
- while (true) {
+while (true) {
   
-   let value = prompt("Введите число", 0);
+let value = prompt("Введите число", 0);
    if (value === "" || value === null || !isFinite(value)) break;
   
    numbers.push(+value);
  }
   
-  let sum = 0;
+let sum = 0;
    for (let number of numbers) {
      sum += number;
    }
@@ -137,7 +137,7 @@ function sumInput() {
   }
   
 
-  function getMaxSubSum(arr) {
+function getMaxSubSum(arr) {
     let maxSum = 0;
     let partialSum = 0;
   
@@ -336,6 +336,58 @@ let strings = ["кришна", "кришна", "харе", "харе",
   ];
   
 alert( unique(strings) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+// 5.7
+
+
+function unique(arr) {
+    return Array.from(new Set(arr));
+  }
+
+
+
+
+
+
+
+
+
+
+
+function aclean(arr) {
+    let obj = {};
+  
+    for (let i = 0; i < arr.length; i++) {
+      let sorted = arr[i].toLowerCase().split("").sort().join("");
+      obj[sorted] = arr[i];
+    }
+  
+    return Object.values(obj);
+  }
+  
+let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+
+
+
+
+
+
+
+
+
+
 
 
 
