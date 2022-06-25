@@ -100,7 +100,7 @@ function printList(list) {
       tmp = tmp.next;
     }
   
-  }
+  };
   
   printList(list);
 
@@ -129,7 +129,7 @@ function printList(list) {
       printList(list.next); 
     }
   
-  }
+  };
   
 printList(list);
 
@@ -156,7 +156,7 @@ let list = {
     }
   
     alert(list.value);
-  }
+  };
   
   printReverseList(list);
 
@@ -192,6 +192,315 @@ let list = {
     for (let i = arr.length - 1; i >= 0; i--) {
       alert( arr[i] );
     }
-  }
+  };
   
   printReverseList(list);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   6.3
+
+
+
+
+function sum(a) {
+
+    return function(b) {
+      return a + b;
+    };
+  
+  };
+  
+  alert( sum(1)(2) );
+  alert( sum(5)(-1) );
+
+
+
+
+
+
+function inBetween(a, b) {
+    return function(x) {
+      return x >= a && x <= b;
+    };
+  };
+  
+  let arr = [1, 2, 3, 4, 5, 6, 7];
+  alert( arr.filter(inBetween(3, 6)) );
+
+
+
+
+
+
+
+function inArray(arr) {
+    return function(x) {
+      return arr.includes(x);
+    };
+  };
+  
+let arr = [1, 2, 3, 4, 5, 6, 7];
+alert( arr.filter(inArray([1, 2, 10])) );
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+let users = [
+    { name: "John", age: 20, surname: "Johnson" },
+    { name: "Pete", age: 18, surname: "Peterson" },
+    { name: "Ann", age: 19, surname: "Hathaway" }
+  ];
+  
+  function byField(field) {
+    return (a, b) => a[field] > b[field] ? 1 : -1;
+  };
+  
+  users.sort(byField('name'));
+  users.forEach(user => alert(user.name));
+  
+  users.sort(byField('age'));
+  users.forEach(user => alert(user.name));
+
+
+
+
+
+
+
+
+
+function makeArmy() {
+
+    let shooters = [];
+  
+    for(let i = 0; i < 10; i++) {
+      let shooter = function() { 
+        alert( i );
+      };
+      shooters.push(shooter);
+  
+  
+    }
+  
+    return shooters;
+  };
+  
+  let army = makeArmy();
+  
+  army[0]();
+  army[5]();
+
+
+
+
+
+
+
+
+
+// 6.6
+
+function makeCounter() {
+    let count = 0;
+  
+    function counter() {
+      return count++;
+    }
+  
+    counter.set = value => count = value;
+  
+    counter.decrease = () => count--;
+  
+    return counter;
+  };
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function sum(a) {
+
+    let currentSum = a;
+  
+    function f(b) {
+      currentSum += b;
+      return f;
+    }
+  
+    f.toString = function() {
+      return currentSum;
+    };
+  
+    return f;
+  };
+
+
+
+
+
+
+// 6.8
+
+
+function printNumbers(from, to) {
+    let current = from;
+  
+    let timerId = setInterval(function() {
+      alert(current);
+      if (current == to) {
+        clearInterval(timerId);
+      }
+      current++;
+    }, 1000);
+  }
+
+
+
+
+  function printNumbers(from, to) {
+    let current = from;
+  
+    setTimeout(function go() {
+      alert(current);
+      if (current < to) {
+        setTimeout(go, 1000);
+      }
+      current++;
+    }, 1000);
+  }
+
+
+
+
+
+
+function spy(func) {
+
+    function wrapper(...args) {
+      wrapper.calls.push(args);
+      return func.apply(this, arguments);
+    }
+  
+    wrapper.calls = [];
+  
+    return wrapper;
+}
+
+
+
+
+function delay(f, ms) {
+
+    return function() {
+      setTimeout(() => f.apply(this, arguments), ms);
+    };
+  
+  }
+  
+let f1000 = delay(alert, 1000);
+
+
+
+
+
+
+
+
+function debounce(f, ms) {
+
+    let isCooldown = false;
+  
+    return function() {
+      if (isCooldown) return;
+  
+      f.apply(this, arguments);
+  
+      isCooldown = true;
+  
+      setTimeout(() => isCooldown = false, ms);
+    };
+  
+}
+
+
+
+
+function throttle(func, ms) {
+
+    let isThrottled = false,
+      savedArgs,
+      savedThis;
+  
+    function wrapper() {
+  
+      if (isThrottled) { // (2)
+        savedArgs = arguments;
+        savedThis = this;
+        return;
+      }
+  
+      func.apply(this, arguments); // (1)
+  
+      isThrottled = true;
+  
+      setTimeout(function() {
+        isThrottled = false; // (3)
+        if (savedArgs) {
+          wrapper.apply(savedThis, savedArgs);
+          savedArgs = savedThis = null;
+        }
+      }, ms);
+    }
+  
+    return wrapper;
+  }
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
