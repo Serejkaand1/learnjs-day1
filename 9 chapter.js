@@ -41,3 +41,20 @@ class Clock {
   
   let clock = new Clock({template: 'h:m:s'});
   clock.start();
+
+
+
+//   9.2
+
+class ExtendedClock extends Clock {
+    constructor(options) {
+      super(options);
+      let { precision=1000 } = options;
+      this.precision = precision;
+    }
+  
+    start() {
+      this.render();
+      this.timer = setInterval(() => this.render(), this.precision);
+    }
+  };
