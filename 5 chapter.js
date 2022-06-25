@@ -3,51 +3,51 @@
 // 5.2
 
 
-// let a = prompt("Введите первое число", "");
-// let b = prompt("Введите второе число", "");
+let a = prompt("Введите первое число", "");
+let b = prompt("Введите второе число", "");
 
-// alert( +a + +b );
-
-
+alert( +a + +b );
 
 
-// function readNumber() {
-//     let numb;
+
+
+function readNumber() {
+    let numb;
   
-//     do {
-//       numb = prompt("Введите число", 0);
-//     } while ( !isFinite(numb) );
+    do {
+      numb = prompt("Введите число", 0);
+    } while ( !isFinite(numb) );
   
-//     if (numb === null || numb === '') return null;
+    if (numb === null || numb === '') return null;
   
-//     return numb;
-//   }
+    return numb;
+  }
   
-//   alert(`Число: ${readNumber()}`);
+  alert(`Число: ${readNumber()}`);
 
 
 
-//   function random(min, max) {
-//     return min + Math.random() * (max - min);
-//   }
+  function random(min, max) {
+    return min + Math.random() * (max - min);
+  }
   
-//   alert( random(1, 5) );
-//   alert( random(1, 5) );
-//   alert( random(1, 5) );
+  alert( random(1, 5) );
+  alert( random(1, 5) );
+  alert( random(1, 5) );
 
 
 
 
 
 
-//   function randomInteger(min, max){
-//     let rand = min - 0.5 + Math.random() * (max - min + 1);
-//   return Math.round(rand);
-//   }
+  function randomInteger(min, max){
+    let rand = min - 0.5 + Math.random() * (max - min + 1);
+  return Math.round(rand);
+  }
 
-// alert( randomInteger(1, 5) ); 
-// alert( randomInteger(1, 5) ); 
-// alert( randomInteger(1, 5) );
+alert( randomInteger(1, 5) ); 
+alert( randomInteger(1, 5) ); 
+alert( randomInteger(1, 5) );
 
 
 
@@ -404,13 +404,277 @@ let read = new WeakSet();
 
 read.add(messages[0]);
 read.add(messages[1]);
-
-
-
 read.add(messages[0]);
-
-
 
 alert("Read message 0: " + read.has(messages[0]));
 
 messages.shift();
+
+
+
+
+let messages = [
+  {text: "Hello", from: "John"},
+  {text: "How goes?", from: "John"},
+  {text: "See you soon", from: "Alice"}
+];
+
+let readMap = new WeakMap();
+
+readMap.set(messages[0], new Date(2017, 1, 1));
+
+
+
+
+
+
+
+
+
+
+// 5.9
+
+
+
+function sumSalaries(salaries) {
+
+  let sum = 0;
+  for (let salary of Object.values(salaries)) {
+    sum += salary;
+  }
+
+  return sum; // 650
+}
+
+let salaries = {
+  "John": 100,
+  "Pete": 300,
+  "Mary": 250
+};
+
+
+
+
+
+
+
+
+function count(obj) {
+  return Object.keys(obj).length;
+}
+
+
+
+
+
+
+
+
+// 5.10
+
+let user = {
+  name: "John",
+  years: 30
+};
+
+let {name, years: age, isAdmin = false} = user;
+
+alert( name ); 
+alert( age ); 
+alert( isAdmin ); 
+
+
+
+
+
+
+
+function topSalary(salaries) {
+
+  let max = 0;
+  let maxName = null;
+
+  for(const [name, salary] of Object.entries(salaries)) {
+    if (max < salary) {
+      max = salary;
+      maxName = name;
+    }
+  }
+
+  return maxName;
+}
+
+
+
+
+
+
+
+
+
+
+
+// 5.11
+
+function getWeekDay(date) {
+  let days = ['вс', 'пн', 'вт', 'ср', 'чт', 'пт', 'сб'];
+
+  return days[date.getDay()];
+}
+
+let date = new Date(2014, 0, 3);
+alert( getWeekDay(date) ); 
+
+
+
+
+
+
+
+
+
+
+function getLocalDay(date) {
+
+  let day = date.getDay();
+
+  if (day == 0) { // день недели 0 (воскресенье) в европейской нумерации будет 7
+    day = 7;
+  }
+
+  return day;
+}
+
+
+
+
+
+
+
+function getDateAgo(date, days) {
+  let dateCopy = new Date(date);
+
+  dateCopy.setDate(date.getDate() - days);
+  return dateCopy.getDate();
+}
+
+let date = new Date(2015, 0, 2);
+
+
+
+
+
+
+
+function getLastDayOfMonth(year, month) {
+  let date = new Date(year, month + 1, 0);
+  return date.getDate();
+}
+
+
+
+
+
+function getSecondsToday() {
+  let d = new Date();
+  return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
+}
+
+
+
+
+
+
+
+
+
+function getSecondsToTomorrow() {
+  let now = new Date();
+
+  // завтрашняя дата
+  let tomorrow = new Date(now.getFullYear(), now.getMonth(), now.getDate()+1);
+
+  let diff = tomorrow - now; // разница в миллисекундах
+  return Math.round(diff / 1000); // преобразуем в секунды
+}
+
+
+
+
+
+
+
+function formatDate(date) {
+  let diff = new Date() - date; 
+
+  if (diff < 1000) { 
+    return 'прямо сейчас';
+  }
+
+  let sec = Math.floor(diff / 1000); 
+
+  if (sec < 60) {
+    return sec + ' сек. назад';
+  }
+
+  let min = Math.floor(diff / 60000); 
+  if (min < 60) {
+    return min + ' мин. назад';
+  }
+
+  let d = date;
+  d = [
+    '0' + d.getDate(),
+    '0' + (d.getMonth() + 1),
+    '' + d.getFullYear(),
+    '0' + d.getHours(),
+    '0' + d.getMinutes()
+  ].map(component => component.slice(-2)); 
+
+  
+  return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
+}
+
+alert( formatDate(new Date(new Date - 1)) ); 
+alert( formatDate(new Date(new Date - 30 * 1000)) ); 
+alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); 
+alert( formatDate(new Date(new Date - 86400 * 1000)) );
+
+
+
+// 5.11
+
+
+
+let user = {
+  name: "Василий Иванович",
+  age: 35
+};
+
+let user2 = JSON.parse(JSON.stringify(user));
+
+
+
+
+
+
+
+
+
+
+let room = {
+  number: 23
+};
+
+let meetup = {
+  title: "Совещание",
+  occupiedBy: [{name: "Иванов"}, {name: "Петров"}],
+  place: room
+};
+
+room.occupiedBy = meetup;
+meetup.self = meetup;
+
+alert( JSON.stringify(meetup, function replacer(key, value) {
+  return (key != "" && value == meetup) ? undefined : value;
+}));
